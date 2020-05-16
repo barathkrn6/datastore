@@ -5,7 +5,7 @@
 	1. Docker
 	2. Maven
 	3. Java 8
-  4. VirtualBox
+  	4. VirtualBox/Hazelcast
 
 # VirtualBox/Hazelcast Setup
 
