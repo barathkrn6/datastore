@@ -28,7 +28,7 @@
                 </member-list>
             </tcp-ip>
             
-    7. Now start all the 3 Hazelcast server (nohup ./{hazelcast_location}/bin/start.sh &)
+   7. Now start all the 3 Hazelcast server (nohup ./{hazelcast_location}/bin/start.sh &)
   
 
 # Application setup
