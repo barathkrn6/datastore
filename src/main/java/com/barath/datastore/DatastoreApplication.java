@@ -10,8 +10,8 @@ import org.springframework.context.annotation.ComponentScan;
 @Slf4j
 public class DatastoreApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DatastoreApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DatastoreApplication.class, args);
+    }
 
 }

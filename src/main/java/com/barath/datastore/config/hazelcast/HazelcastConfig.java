@@ -20,18 +20,27 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 @Slf4j
 @Configuration
-public class HazelcastConfig implements HZQuorumListener {
+public class HazelcastConfig {
 
     @Value("${clustering.hazelcast.quorum}")
     int quorum;
+
     @Value("${hazelcast.all.address}")
     String hazelcastAllAddresses;
+
     @Value("${hazelcast.all.count.nodes}")
     int hazelcastNodeCount;
+
     AtomicBoolean isQuorum;
+
     @Value("${hazelcast.address}")
     private String hazelCastAddress;
 
+    /**
+     * Bean to create hazelcast instance on application start up and set a listener for node add and delete
+     *
+     * @return
+     */
     @Bean
     HazelcastInstance createClientInstance() {
         ClientConfig config = new ClientConfig();
@@ -51,7 +60,7 @@ public class HazelcastConfig implements HZQuorumListener {
             public void memberRemoved(MembershipEvent membershipEvent) {
                 log.info("Member Removed :: {}", membershipEvent);
                 isQuorum.set(membershipEvent.getMembers().size() >= getexpectedQuorum());
-                if (!isQuorum.get()) {
+                if (!isQuorum()) {
                     log.error("Alertssssssssss :: {}", membershipEvent.getMember().getAddress().getHost());
                 }
             }
@@ -61,7 +70,9 @@ public class HazelcastConfig implements HZQuorumListener {
 
     private AtomicBoolean calculateIsQuorum(HazelcastInstance hazelcastInstance) {
         int clusterSize = hazelcastInstance.getCluster().getMembers().size();
+        log.info("clusterSize :: {}", clusterSize);
         double expectedQuorum = getexpectedQuorum();
+        log.info("expectedQuorum :: {}", expectedQuorum);
         return new AtomicBoolean(clusterSize >= expectedQuorum);
     }
 
@@ -85,7 +96,6 @@ public class HazelcastConfig implements HZQuorumListener {
         }
     }
 
-    @Override
     public boolean isQuorum() {
         return isQuorum.get();
     }
