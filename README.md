@@ -53,4 +53,4 @@ Step 3 : Run the spring boot application by linked database docker
 
 # Health Check URL
 
-	http://{host_name/ip_addr}:8080/health-check
+	http://{host_name/ip_addr}:8080/health_check
