@@ -21,7 +21,7 @@
                 <multicast-port>54327</multicast-port>
             </multicast>
             <tcp-ip enabled="true">
-                <interface>{parent_ip}|</interface>
+                <interface>{parent_ip}</interface>
                 <member-list>
                     <member>{other_node_ip}</member>
                     <member>{other_node_ip}</member>
