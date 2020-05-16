@@ -14,7 +14,7 @@
   3. Create 3 servers from CentOs 7 image.
   4. Make a static IP setup on 3 servers.
   5. Download Hazelcast to any location on all the servers
-  6. Update hazelcast.xml as below.
+  6. Update hazelcast.xml as below in all the nodes.
   
             <multicast enabled="false">
                 <multicast-group>224.2.2.3</multicast-group>
